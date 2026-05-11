@@ -1,29 +1,392 @@
-body {
-    background-color: #f0f8ff;
-    text-align: center;
-    font-family: Arial;
-}
+<body>
+  <div id="cover">
+    <div id="leftDoor" class="door">
+      <div class="gold-border"></div>
+      <div class="door-word left-word">请</div>
+      <div class="gold-symbol left-symbol">囍</div>
+    </div>
 
-h1 {
-    color: #333;
-}
+    <div id="rightDoor" class="door">
+      <div class="gold-border"></div>
+      <div class="door-word right-word">帖</div>
+      <div class="gold-symbol right-symbol">囍</div>
+    </div>
 
-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-}
+    <div class="center-light"></div>
 
-button:hover {
-    background-color: #45a049;
-}
+    <div id="leftPerson" class="paper-person pink">
+      <div class="ribbon"></div>
+      <div class="head"></div>
+      <div class="body"></div>
+      <div class="sleeve sleeve-left"></div>
+      <div class="sleeve sleeve-right"></div>
+      <div class="fan"></div>
+      <div class="flower">✿</div>
+    </div>
 
-img {
-    width: 250px;
-    border-radius: 12px;
-    margin: 20px 0;
+    <div id="rightPerson" class="paper-person blue">
+      <div class="ribbon"></div>
+      <div class="head"></div>
+      <div class="body"></div>
+      <div class="sleeve sleeve-left"></div>
+      <div class="sleeve sleeve-right"></div>
+      <div class="fan"></div>
+      <div class="flower">✿</div>
+    </div>
+
+    <div id="cover-tip">点击开启我们的故事 ❤</div>
+  </div>
+
+  <div class="decor-bg"></div>
+
+  <div class="page-wrap">
+    <div class="frame">
+      <div class="title">婚礼请柬</div>
+
+      <section class="section">
+        <button class="music-btn" id="musicBtn">♫</button>
+        <h2 class="main-heading">「婚礼」</h2>
+
+        <p class="invite-text">
+          是人生中一场以爱之名的相聚<br>
+          很开心这一天<br>
+          你为我们而来<br>
+          希望我们有幸<br>
+          邀请收到请柬的每一个你<br>
+          见证我们此生最重要的决定
+        </p>
+
+        <div class="couple-name">新郎名字 & 新娘名字</div>
+
+        <div class="countdown">
+          <div><strong id="days">00</strong><span>天</span></div>
+          <div><strong id="hours">00</strong><span>时</span></div>
+          <div><strong id="minutes">00</strong><span>分</span></div>
+          <div><strong id="seconds">00</strong><span>秒</span></div>
+        </div>
+
+        <div class="photo-wide">
+          <img src="1.jpeg" alt="照片">
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="story-block">
+          <div>
+            <div class="say-title">她说：</div>
+            <div class="say-text">
+              星河滚烫<br>
+              你是人间理想<br>
+              愿你也温柔如旧
+            </div>
+          </div>
+          <div class="photo-small"><img src="2.jpeg" alt="照片"></div>
+        </div>
+
+        <div class="story-block">
+          <div class="photo-small"><img src="3.jpeg" alt="照片"></div>
+          <div>
+            <div class="say-title">他说：</div>
+            <div class="say-text">
+              在我的这颗小星球里面<br>
+              你就是温柔跟璀璨<br>
+              我也终生不换
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="main-heading">婚礼时间</h2>
+        <p class="invite-text">2026年6月21日 星期日 19:00</p>
+
+        <div class="calendar-month">06 / 21</div>
+
+        <table class="calendar">
+          <thead>
+            <tr>
+              <th>一</th><th>二</th><th>三</th><th>四</th><th>五</th><th>六</th><th>日</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td></td><td></td><td></td><td>1</td><td>2</td><td>3</td><td>4</td></tr>
+            <tr><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td></tr>
+            <tr><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td></tr>
+            <tr><td>19</td><td>20</td><td><div class="active">21</div></td><td>22</td><td>23</td><td>24</td><td>25</td></tr>
+            <tr><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td></td><td></td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="section">
+        <h2 class="main-heading">婚礼地点</h2>
+        <p class="invite-text">请填写酒店名称 / 地址</p>
+
+        <div class="map">
+          <iframe
+            src="https://www.google.com/maps?q=Kuala%20Lumpur&output=embed"
+            loading="lazy"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="main-heading">领取专属请帖</h2>
+        <p class="invite-text">填写你的资料，生成属于你的正式婚礼请帖</p>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfxXqqXR8BNnTYBHxqe6jqMBs8YVhxo4XelkEKW3o6SLZLiXQ/viewform?usp=header" target="_blank">
+    <button class="rsvp-btn">
+        填写出席资料
+    </button>
+</a>
+      </section>
+    </div>
+  </div>
+
+  <div id="guestModal">
+    <div class="guest-box">
+      <h2>填写出席资料</h2>
+
+      <label>姓名：</label>
+      <input type="text" id="guestName" placeholder="请输入姓名">
+
+      <label>人数：</label>
+      <input type="number" id="guestCount" placeholder="请输入人数" min="1">
+
+      <button onclick="generatePDF()">生成 PDF 请帖</button>
+      <button class="close-btn" onclick="closeGuestForm()">关闭</button>
+    </div>
+  </div>
+
+  <div id="pdfInvite">
+    <h1>正式婚礼请帖</h1>
+    <p class="pdf-line">诚挚邀请</p>
+    <h2 id="pdfGuestName">贵宾姓名</h2>
+    <p>携 <span id="pdfGuestCount">1</span> 位嘉宾</p>
+
+    <div class="pdf-divider"></div>
+
+    <p>参加我们的婚礼典礼</p>
+    <h3>白少维 & 许梓柔</h3>
+
+    <p>时间：2026年6月21日 19:00</p>
+    <p>地点：新江河鱼酒楼</p>
+    <p>62, Jalan Sultan Azlan Shah, 31400 Ipoh, Perak</p>
+    <p class="pdf-footer">
+      感谢你的见证与祝福<br>
+      我们在婚礼现场等你
+    </p>
+  </div>
+
+  <audio id="bgm" loop>
+    <source src="m1.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const cover = document.getElementById("cover");
+    const leftDoor = document.getElementById("leftDoor");
+    const rightDoor = document.getElementById("rightDoor");
+    const leftPerson = document.getElementById("leftPerson");
+    const rightPerson = document.getElementById("rightPerson");
+    const bgm = document.getElementById("bgm");
+    const musicBtn = document.getElementById("musicBtn");
+
+    cover.addEventListener("click", async () => {
+      leftPerson.style.transform = "translateX(-80px) rotate(-15deg)";
+      rightPerson.style.transform = "translateX(80px) scaleX(-1) rotate(-15deg)";
+
+      setTimeout(() => {
+        leftDoor.style.transform = "translateX(-100%)";
+        rightDoor.style.transform = "translateX(100%)";
+      }, 250);
+
+      setTimeout(() => {
+        cover.style.transition = "opacity 0.6s ease";
+        cover.style.opacity = "0";
+      }, 1200);
+
+      setTimeout(() => {
+        cover.style.display = "none";
+        startAutoScroll();
+      }, 1800);
+
+      try {
+        await bgm.play();
+        musicBtn.textContent = "❚❚";
+      } catch (e) {}
+    });
+
+    musicBtn.addEventListener("click", async () => {
+      if (bgm.paused) {
+        await bgm.play();
+        musicBtn.textContent = "❚❚";
+      } else {
+        bgm.pause();
+        musicBtn.textContent = "♫";
+      }
+    });
+
+    const weddingDate = new Date("2026-06-21T19:00:00");
+
+    function updateCountdown() {
+      const now = new Date();
+      const diff = weddingDate - now;
+
+      if (diff <= 0) return;
+
+      document.getElementById("days").textContent = Math.floor(diff / (1000 * 60 * 60 * 24));
+      document.getElementById("hours").textContent = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      document.getElementById("minutes").textContent = Math.floor((diff / (1000 * 60)) % 60);
+      document.getElementById("seconds").textContent = Math.floor((diff / 1000) % 60);
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    let autoScroll = true;
+
+    function startAutoScroll() {
+      function step() {
+        if (!autoScroll) return;
+        window.scrollBy(0, 0.35);
+
+        if (window.innerHeight + window.scrollY < document.body.scrollHeight - 2) {
+          requestAnimationFrame(step);
+        }
+      }
+
+      requestAnimationFrame(step);
+    }
+
+    window.addEventListener("wheel", () => autoScroll = false);
+    window.addEventListener("touchstart", () => autoScroll = false);
+
+    function openGuestForm() {
+      document.getElementById("guestModal").style.display = "flex";
+    }
+
+    function closeGuestForm() {
+      document.getElementById("guestModal").style.display = "none";
+    }
+    function generatePDF() {
+  const name = document.getElementById("guestName").value.trim();
+  const count = document.getElementById("guestCount").value.trim();
+
+  if (!name || !count) {
+    alert("请填写姓名和人数");
+    return;
+  }
+
+  const pdfWindow = window.open("", "_blank");
+
+  pdfWindow.document.write(`
+    <!DOCTYPE html>
+    <html lang="zh">
+    <head>
+      <meta charset="UTF-8">
+      <title>${name}-婚礼请帖</title>
+      <style>
+        body {
+          margin: 0;
+          background: #fff8f0;
+          font-family: "Microsoft YaHei", "SimSun", sans-serif;
+        }
+
+        .invite {
+          width: 794px;
+          height: 1123px;
+          margin: 0 auto;
+          padding: 80px 60px;
+          border: 18px solid #b03141;
+          color: #5a3b32;
+          text-align: center;
+          box-sizing: border-box;
+        }
+
+        h1 {
+          color: #b03141;
+          font-size: 42px;
+          margin-top: 40px;
+        }
+
+        h2 {
+          font-size: 36px;
+          margin: 40px 0 20px;
+        }
+
+        h3 {
+          color: #b03141;
+          font-size: 30px;
+          margin: 35px 0;
+        }
+
+        p {
+          font-size: 22px;
+          line-height: 2;
+        }
+
+        .divider {
+          width: 140px;
+          height: 3px;
+          background: #b03141;
+          margin: 45px auto;
+        }
+
+        .footer {
+          margin-top: 80px;
+          font-size: 20px;
+        }
+
+        @media print {
+          body {
+            background: white;
+          }
+
+          .invite {
+            margin: 0;
+            width: 100%;
+            height: 100vh;
+          }
+        }
+      </style>
+    </head>
+    <body>
+      <div class="invite">
+        <h1>正式婚礼请帖</h1>
+
+        <p>诚挚邀请</p>
+
+        <h2>${name}</h2>
+
+        <p>携 ${count} 位嘉宾</p>
+
+        <div class="divider"></div>
+
+        <p>参加我们的婚礼典礼</p>
+
+        <h3>新郎名字 & 新娘名字</h3>
+
+        <p>时间：2026年6月21日 19:00</p>
+        <p>地点：请填写酒店名称</p>
+
+        <p class="footer">
+          感谢你的见证与祝福<br>
+          我们在婚礼现场等你
+        </p>
+      </div>
+
+      <script>
+        window.onload = function() {
+          setTimeout(function() {
+            window.print();
+          }, 500);
+        };
+      <\/script>
+    </body>
+    </html>
+  `);
+
+  pdfWindow.document.close();
 }
+  </script>
+</body>
