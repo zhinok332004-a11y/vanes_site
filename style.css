@@ -1,5 +1,5 @@
 <body>
- <div id="cover">
+<div id="cover">
   <div id="leftDoor" class="door">
     <div class="gold-border"></div>
     <div class="door-word left-word">请</div>
@@ -328,48 +328,25 @@ setTimeout(() => {
           margin-top: 80px;
           font-size: 20px;
         }
-      .flower-frame {
+     .double-xi {
   position: absolute;
-  inset: 25px;
-  border: 2px solid rgba(255, 218, 150, 0.75);
-  border-radius: 20px;
-  z-index: 12;
+  left: 50%;
+  top: 52%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  gap: 16px;
+  z-index: 30;
   pointer-events: none;
 }
 
-.flower {
-  position: absolute;
-  font-size: 48px;
-  animation: flowerFloat 3s ease-in-out infinite;
+.double-xi span {
+  color: #ffd98a;
+  font-family: "Ma Shan Zheng", cursive;
+  font-size: 72px;
+  line-height: 1;
+  text-shadow: 0 0 10px rgba(255, 210, 120, 0.7);
 }
 
-.top-left {
-  top: -18px;
-  left: -10px;
-}
-
-.top-right {
-  top: -18px;
-  right: -10px;
-}
-
-.bottom-left {
-  bottom: -18px;
-  left: -10px;
-}
-
-.bottom-right {
-  bottom: -18px;
-  right: -10px;
-}
-
-@keyframes flowerFloat {
-  0%, 100% {
-    transform: scale(1) rotate(0deg);
-  }
-  50% {
-    transform: scale(1.08) rotate(8deg);
-  }
 }
 
         @media print {
