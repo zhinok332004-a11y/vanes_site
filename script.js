@@ -6,8 +6,6 @@
     const musicBtn = document.getElementById("musicBtn");
 
     cover.addEventListener("click", async () => {
-      leftPerson.style.transform = "translateX(-80px) rotate(-15deg)";
-      rightPerson.style.transform = "translateX(80px) scaleX(-1) rotate(-15deg)";
 
       setTimeout(() => {
         leftDoor.style.transform = "translateX(-100%)";
