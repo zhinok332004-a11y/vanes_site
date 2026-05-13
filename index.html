@@ -81,11 +81,21 @@
       transform: translateX(-50%);
       background: linear-gradient(90deg, transparent, rgba(255,240,245,0.95), transparent);
       z-index: 2;
-      opacity: 0.9;
-
-      
+      opacity: 0.9; 
     }
-
+    
+    .center-xi {
+  position: absolute;
+  left: 50%;
+  top: 52%;
+  transform: translate(-50%, -50%);
+  color: #ffd98a;
+  font-family: "Ma Shan Zheng", cursive;
+  font-size: 72px;
+  z-index: 30;
+  text-shadow: 0 0 10px rgba(255, 210, 120, 0.7);
+  pointer-events: none;
+}
     #cover-tip {
       position: absolute;
       left: 50%;
@@ -512,18 +522,7 @@
 
 <body>
   <div id="cover">
-    <div id="leftDoor" class="door">
-      <div class="gold-border"></div>
-      <div class="door-word left-word">请</div>
-      <div class="gold-symbol left-symbol">囍</div>
-    </div>
-
-    <div id="rightDoor" class="door">
-      <div class="gold-border"></div>
-      <div class="door-word right-word">帖</div>
-      <div class="gold-symbol right-symbol">囍</div>
-    </div>
-
+    <div class="center-xi">囍</div>
     <div class="center-light"></div>
 
     <div class="flower-frame">
