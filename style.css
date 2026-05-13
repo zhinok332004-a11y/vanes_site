@@ -244,21 +244,28 @@
     updateCountdown();
     setInterval(updateCountdown, 1000);
 
-    let autoScroll = true;
+   let autoScroll = true;
+const scrollSpeed = 0.5;
 
-    function startAutoScroll() {
-      function step() {
-        if (!autoScroll) return;
-        window.scrollBy(0, 0.35);
+function startAutoScroll() {
+  autoScroll = true;
 
-        if (window.innerHeight + window.scrollY < document.body.scrollHeight - 2) {
-          requestAnimationFrame(step);
-        }
-      }
+  function step() {
+    if (!autoScroll) return;
 
+    window.scrollBy(0, scrollSpeed);
+
+    const atBottom =
+      window.innerHeight + window.scrollY >= document.body.scrollHeight - 2;
+
+    if (!atBottom) {
       requestAnimationFrame(step);
     }
+  }
 
+  requestAnimationFrame(step);
+}
+        
     window.addEventListener("wheel", () => autoScroll = false);
     window.addEventListener("touchstart", () => autoScroll = false);
 
