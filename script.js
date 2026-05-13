@@ -2,8 +2,6 @@
     const cover = document.getElementById("cover");
     const leftDoor = document.getElementById("leftDoor");
     const rightDoor = document.getElementById("rightDoor");
-    const leftPerson = document.getElementById("leftPerson");
-    const rightPerson = document.getElementById("rightPerson");
     const bgm = document.getElementById("bgm");
     const musicBtn = document.getElementById("musicBtn");
 
