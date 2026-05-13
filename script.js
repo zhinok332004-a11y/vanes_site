@@ -64,7 +64,7 @@
     function startAutoScroll() {
       function step() {
         if (!autoScroll) return;
-        window.scrollBy(0, 0.35);
+        window.scrollBy(0, 0.20);
 
         if (window.innerHeight + window.scrollY < document.body.scrollHeight - 2) {
           requestAnimationFrame(step);
