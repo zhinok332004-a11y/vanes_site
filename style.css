@@ -265,6 +265,10 @@ function startAutoScroll() {
 
   requestAnimationFrame(step);
 }
+
+setTimeout(() => {
+  startAutoScroll();
+}, 2500);
         
     window.addEventListener("wheel", () => autoScroll = false);
     window.addEventListener("touchstart", () => autoScroll = false);
