@@ -1,4 +1,4 @@
-<script>
+ <script>
     const cover = document.getElementById("cover");
     const leftDoor = document.getElementById("leftDoor");
     const rightDoor = document.getElementById("rightDoor");
@@ -55,21 +55,31 @@
     updateCountdown();
     setInterval(updateCountdown, 1000);
 
-    let autoScroll = true;
+   let autoScroll = true;
+const scrollSpeed = 0.20;
 
-    function startAutoScroll() {
-      function step() {
-        if (!autoScroll) return;
-        window.scrollBy(0, 0.20);
+function startAutoScroll() {
+  autoScroll = true;
 
-        if (window.innerHeight + window.scrollY < document.body.scrollHeight - 2) {
-          requestAnimationFrame(step);
-        }
-      }
+  function step() {
+    if (!autoScroll) return;
 
+    window.scrollBy(0, scrollSpeed);
+
+    const atBottom =
+      window.innerHeight + window.scrollY >= document.body.scrollHeight - 2;
+
+    if (!atBottom) {
       requestAnimationFrame(step);
     }
+  }
 
+  requestAnimationFrame(step);
+}
+
+setTimeout(() => {
+  startAutoScroll();
+}, 2500);
     window.addEventListener("wheel", () => autoScroll = false);
     window.addEventListener("touchstart", () => autoScroll = false);
 
@@ -115,50 +125,6 @@
           box-sizing: border-box;
         }
 
-        .flower-frame {
-  position: absolute;
-  inset: 25px;
-  border: 2px solid rgba(255, 218, 150, 0.75);
-  border-radius: 20px;
-  z-index: 12;
-  pointer-events: none;
-}
-
-.flower {
-  position: absolute;
-  font-size: 48px;
-  animation: flowerFloat 3s ease-in-out infinite;
-}
-
-.top-left {
-  top: -18px;
-  left: -10px;
-}
-
-.top-right {
-  top: -18px;
-  right: -10px;
-}
-
-.bottom-left {
-  bottom: -18px;
-  left: -10px;
-}
-
-.bottom-right {
-  bottom: -18px;
-  right: -10px;
-}
-
-@keyframes flowerFloat {
-  0%, 100% {
-    transform: scale(1) rotate(0deg);
-  }
-  50% {
-    transform: scale(1.08) rotate(8deg);
-  }
-}
-
         h1 {
           color: #b03141;
           font-size: 42px;
@@ -193,25 +159,6 @@
           font-size: 20px;
         }
 
-        .double-xi {
-  position: absolute;
-  left: 50%;
-  top: 52%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  gap: 16px;
-  z-index: 30;
-  pointer-events: none;
-}
-
-.double-xi span {
-  color: #ffd98a;
-  font-family: "Ma Shan Zheng", cursive;
-  font-size: 72px;
-  line-height: 1;
-  text-shadow: 0 0 10px rgba(255, 210, 120, 0.7);
-}
-
         @media print {
           body {
             background: white;
@@ -239,11 +186,10 @@
 
         <p>参加我们的婚礼典礼</p>
 
-        <h3>白少维 & 许梓柔</h3>
+        <h3>新郎名字 & 新娘名字</h3>
 
         <p>时间：2026年6月21日 19:00</p>
-        <p>新江河鱼酒楼：62, Jalan Sultan Azlan Shah, 31400 Ipoh, Perak</p>
-        <p.https://www.google.com/maps?sca_esv=313a17643fd6427e&rlz=1C1CHBF_en-GBMY1166MY1166&output=search&q=%E6%96%B0%E6%B1%9F%E6%B2%B3%E9%B1%BC%E9%85%92%E6%A5%BC&source=lnms&fbs=ADc_l-aN0CWEZBOHjofHoaMMDiKpaEWjvZ2Py1XXV8d8KvlI3j2nXl-YQ05KjnWz5SrU93H7yjmEhUi5AUSwdCoCuNwiWkvVZE-999EWKM9rFRM-ZVafo7JOKOcqH_2vLJ3f-GYWxHqvZKJ2h9mU1FDBvr8wAf3SsIHJYLjL55e9gVbD77SML-3Cuch9P_cCYdptFe0hed5Qu9oTUpLbXLFrppB8dzHceQ&entry=mc&ved=1t:200715&ictx=111</p>
+        <p>地点：请填写酒店名称</p>
 
         <p class="footer">
           感谢你的见证与祝福<br>
