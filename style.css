@@ -205,11 +205,11 @@
         cover.style.transition = "opacity 0.6s ease";
         cover.style.opacity = "0";
       }, 1200);
-
-      setTimeout(() => {
-        cover.style.display = "none";
-        startAutoScroll();
-      }, 1800);
+        
+        setTimeout(() => {
+  cover.style.display = "none";
+  startAutoScroll();
+}, 1800);
 
       try {
         await bgm.play();
