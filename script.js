@@ -224,6 +224,7 @@
 
         <p>时间：2026年6月21日 19:00</p>
         <p>新江河鱼酒楼：62, Jalan Sultan Azlan Shah, 31400 Ipoh, Perak</p>
+        <p.https://www.google.com/maps?sca_esv=313a17643fd6427e&rlz=1C1CHBF_en-GBMY1166MY1166&output=search&q=%E6%96%B0%E6%B1%9F%E6%B2%B3%E9%B1%BC%E9%85%92%E6%A5%BC&source=lnms&fbs=ADc_l-aN0CWEZBOHjofHoaMMDiKpaEWjvZ2Py1XXV8d8KvlI3j2nXl-YQ05KjnWz5SrU93H7yjmEhUi5AUSwdCoCuNwiWkvVZE-999EWKM9rFRM-ZVafo7JOKOcqH_2vLJ3f-GYWxHqvZKJ2h9mU1FDBvr8wAf3SsIHJYLjL55e9gVbD77SML-3Cuch9P_cCYdptFe0hed5Qu9oTUpLbXLFrppB8dzHceQ&entry=mc&ved=1t:200715&ictx=111</p>
 
         <p class="footer">
           感谢你的见证与祝福<br>
