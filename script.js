@@ -193,6 +193,25 @@
           font-size: 20px;
         }
 
+        .double-xi {
+  position: absolute;
+  left: 50%;
+  top: 52%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  gap: 16px;
+  z-index: 30;
+  pointer-events: none;
+}
+
+.double-xi span {
+  color: #ffd98a;
+  font-family: "Ma Shan Zheng", cursive;
+  font-size: 72px;
+  line-height: 1;
+  text-shadow: 0 0 10px rgba(255, 210, 120, 0.7);
+}
+
         @media print {
           body {
             background: white;
