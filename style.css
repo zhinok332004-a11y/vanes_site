@@ -334,6 +334,49 @@ setTimeout(() => {
           margin-top: 80px;
           font-size: 20px;
         }
+      .flower-frame {
+  position: absolute;
+  inset: 25px;
+  border: 2px solid rgba(255, 218, 150, 0.75);
+  border-radius: 20px;
+  z-index: 12;
+  pointer-events: none;
+}
+
+.flower {
+  position: absolute;
+  font-size: 48px;
+  animation: flowerFloat 3s ease-in-out infinite;
+}
+
+.top-left {
+  top: -18px;
+  left: -10px;
+}
+
+.top-right {
+  top: -18px;
+  right: -10px;
+}
+
+.bottom-left {
+  bottom: -18px;
+  left: -10px;
+}
+
+.bottom-right {
+  bottom: -18px;
+  right: -10px;
+}
+
+@keyframes flowerFloat {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.08) rotate(8deg);
+  }
+}
 
         @media print {
           body {
