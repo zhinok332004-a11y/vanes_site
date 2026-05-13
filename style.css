@@ -14,26 +14,12 @@
 
     <div class="center-light"></div>
 
-    <div id="leftPerson" class="paper-person pink">
-      <div class="ribbon"></div>
-      <div class="head"></div>
-      <div class="body"></div>
-      <div class="sleeve sleeve-left"></div>
-      <div class="sleeve sleeve-right"></div>
-      <div class="fan"></div>
-      <div class="flower">✿</div>
-    </div>
-
-    <div id="rightPerson" class="paper-person blue">
-      <div class="ribbon"></div>
-      <div class="head"></div>
-      <div class="body"></div>
-      <div class="sleeve sleeve-left"></div>
-      <div class="sleeve sleeve-right"></div>
-      <div class="fan"></div>
-      <div class="flower">✿</div>
-    </div>
-
+  <div class="flower-frame">
+  <div class="flower top-left">🌸</div>
+  <div class="flower top-right">🌸</div>
+  <div class="flower bottom-left">🌸</div>
+  <div class="flower bottom-right">🌸</div>
+</div>
     <div id="cover-tip">点击开启我们的故事 ❤</div>
   </div>
 
