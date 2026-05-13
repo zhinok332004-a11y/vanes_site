@@ -56,6 +56,26 @@
       font-family: "Ma Shan Zheng", cursive;
       font-size: 44px;
     }
+    .door-xi {
+  position: absolute;
+  top: 50%;
+  color: #ffd98a;
+  font-family: "Ma Shan Zheng", cursive;
+  font-size: 72px;
+  line-height: 1;
+  z-index: 30;
+  text-shadow: 0 0 10px rgba(255, 210, 120, 0.7);
+}
+
+.left-xi {
+  right: 10px;
+  transform: translateY(-50%);
+}
+
+.right-xi {
+  left: 10px;
+  transform: translateY(-50%);
+}
 
     .left-word { right: 25%; }
     .right-word { left: 25%; }
@@ -429,10 +449,17 @@
 
   <div class="center-light"></div>
 
-  <div class="double-xi">
-    <span>囍</span>
-    <span>囍</span>
-  </div>
+<div id="leftDoor" class="door">
+  <div class="gold-border"></div>
+  <div class="door-word left-word">请</div>
+  <div class="door-xi left-xi">囍</div>
+</div>
+
+<div id="rightDoor" class="door">
+  <div class="gold-border"></div>
+  <div class="door-word right-word">帖</div>
+  <div class="door-xi right-xi">囍</div>
+</div>
 
   <div id="cover-tip">点击开启我们的故事 ❤</div>
 </div>
