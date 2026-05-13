@@ -123,8 +123,8 @@
         <p class="invite-text">请填写酒店名称 / 地址</p>
 
         <div class="map">
-<iframe
-    src="https://maps.google.com/maps?q=Sun%20Kong%20River%20Fish%20Restaurant%20Sdn%20Bhd%20Sauk&t=&z=15&ie=UTF8&iwloc=&output=embed"
+  <iframe
+    src="https://www.openstreetmap.org/export/embed.html?bbox=101.081%2C4.595%2C101.091%2C4.605&layer=mapnik&marker=4.600%2C101.086"
     loading="lazy"
     allowfullscreen>
   </iframe>
