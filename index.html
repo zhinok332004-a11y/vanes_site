@@ -683,14 +683,10 @@
     const cover = document.getElementById("cover");
     const leftDoor = document.getElementById("leftDoor");
     const rightDoor = document.getElementById("rightDoor");
-    const leftPerson = document.getElementById("leftPerson");
-    const rightPerson = document.getElementById("rightPerson");
     const bgm = document.getElementById("bgm");
     const musicBtn = document.getElementById("musicBtn");
 
     cover.addEventListener("click", async () => {
-      leftPerson.style.transform = "translateX(-80px) rotate(-15deg)";
-      rightPerson.style.transform = "translateX(80px) scaleX(-1) rotate(-15deg)";
 
       setTimeout(() => {
         leftDoor.style.transform = "translateX(-100%)";
