@@ -106,7 +106,7 @@
     #introPage {
       position: fixed;
       inset: 0;
-      background: #8f0f1d;
+      background: #b91f2d;
       z-index: 9998;
       display: flex;
       align-items: center;
@@ -114,86 +114,38 @@
       transition: transform 1.2s ease, opacity 1.2s ease;
     }
 
-    .chinese-style {
-      width: 240px;
-      height: 88vh;
-      max-height: 760px;
-      background:
-        radial-gradient(circle at 50% 6%, rgba(255, 220, 150, 0.12), transparent 24%),
-        linear-gradient(180deg, #a60d1f, #7f0716);
-      border: 3px solid #d9b16f;
-      border-radius: 10px;
-      position: relative;
-      box-shadow: 0 0 25px rgba(0,0,0,0.25);
-      color: #f7d48f;
-      overflow: hidden;
+    .intro-card {
+      width: 82%;
+      max-width: 360px;
+      height: 520px;
+      border: 3px solid #ffd98a;
+      border-radius: 20px;
+      color: #ffd98a;
+      text-align: center;
+      padding: 70px 25px;
+      box-shadow: 0 0 25px rgba(255, 217, 138, 0.35);
+      background: rgba(130, 0, 20, 0.12);
     }
 
-    .chinese-style::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at 10% 10%, rgba(255, 215, 120, 0.15), transparent 18%),
-        radial-gradient(circle at 90% 22%, rgba(255, 215, 120, 0.08), transparent 20%);
-      pointer-events: none;
-    }
-
-    .intro-circle {
-      width: 90px;
-      height: 90px;
-      border: 3px solid #e5c27a;
-      border-radius: 50%;
-      margin: 55px auto 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 52px;
+    .intro-card h1 {
       font-family: "Ma Shan Zheng", cursive;
-      box-shadow: 0 0 18px rgba(255,215,120,0.3);
-      position: relative;
-      z-index: 1;
-    }
-
-    .vertical-text {
-      margin-top: 55px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-      font-size: 56px;
+      font-size: 90px;
+      margin: 0 0 40px;
       line-height: 1;
+      text-shadow: 0 0 12px rgba(255, 210, 120, 0.7);
+    }
+
+    .intro-card h2 {
       font-family: "Ma Shan Zheng", cursive;
-      position: relative;
-      z-index: 1;
+      font-size: 34px;
+      margin: 45px 0 25px;
+      line-height: 1.4;
     }
 
-    .intro-name {
-      margin-top: 38px;
-      text-align: center;
-      font-size: 18px;
-      letter-spacing: 2px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .intro-invite {
-      margin-top: 28px;
-      text-align: center;
-      font-size: 24px;
-      font-family: "Ma Shan Zheng", cursive;
-      position: relative;
-      z-index: 1;
-    }
-
-    .intro-tip {
-      position: absolute;
-      bottom: 26px;
-      width: 100%;
-      text-align: center;
-      font-size: 14px;
-      color: rgba(255,235,200,0.85);
-      z-index: 1;
+    .intro-card p {
+      font-size: 16px;
+      line-height: 2;
+      margin: 0;
     }
 
     .sleeve-left {
@@ -504,19 +456,33 @@
       .left-xi { right: 6px; }
       .right-xi { left: 6px; }
       .chinese-style {
-        width: 220px;
+        width: 230px;
         height: 86vh;
       }
-      .vertical-text {
-        font-size: 50px;
-      }
+
       .intro-circle {
-        width: 78px;
-        height: 78px;
-        font-size: 46px;
+        width: 74px;
+        height: 74px;
+        font-size: 42px;
+        margin-top: 34px;
       }
-      .intro-name {
-        font-size: 16px;
+
+      .vertical-invite {
+        gap: 10px;
+        margin-top: 32px;
+      }
+
+      .v-col {
+        font-size: 23px;
+      }
+
+      .v-col.small {
+        font-size: 20px;
+      }
+
+      .v-col.bottom {
+        font-size: 22px;
+        margin-top: 230px;
       }
     }
   </style>
@@ -541,19 +507,11 @@
   </div>
 
   <div id="introPage">
-    <div class="intro-card chinese-style">
-      <div class="intro-circle">囍</div>
-
-      <div class="vertical-text">
-        <span>光</span>
-        <span>临</span>
-      </div>
-
-      <div class="intro-name">戴秋霞 · 白荣辉</div>
-      <div class="intro-name">钟慧敏 · 许赐权</div>
-
-      <div class="intro-invite">全敬约</div>
-      <div class="intro-tip">向上滑动开启请帖</div>
+    <div class="intro-card">
+      <h1>囍</h1>
+      <p>诚挚邀请您参加我们的婚礼</p>
+      <h2>白少维 & 许梓柔</h2>
+      <p>2026.06.21 · 19:00</p>
     </div>
   </div>
 
@@ -629,11 +587,11 @@
             </tr>
           </thead>
           <tbody>
-            <tr><td></td><td></td><td></td><td>1</td><td>2</td><td>3</td><td>4</td></tr>
-            <tr><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td></tr>
-            <tr><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td></tr>
-            <tr><td>19</td><td>20</td><td><div class="active">21</div></td><td>22</td><td>23</td><td>24</td><td>25</td></tr>
-            <tr><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td></td><td></td></tr>
+            <tr><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr>
+            <tr><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td></tr>
+            <tr><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td><div class="active">21</div></td></tr>
+            <tr><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td></tr>
+            <tr><td>29</td><td>30</td><td></td><td></td><td></td><td></td><td></td></tr>
           </tbody>
         </table>
       </section>
@@ -711,36 +669,6 @@
     const rightDoor = document.getElementById("rightDoor");
     const bgm = document.getElementById("bgm");
     const musicBtn = document.getElementById("musicBtn");
-    const introPage = document.getElementById("introPage");
-
-    let introClosed = false;
-    let touchStartY = 0;
-
-    introPage.addEventListener("wheel", closeIntroPage);
-
-    introPage.addEventListener("touchstart", (event) => {
-      touchStartY = event.touches[0].clientY;
-    });
-
-    introPage.addEventListener("touchmove", (event) => {
-      const touchCurrentY = event.touches[0].clientY;
-      if (touchStartY - touchCurrentY > 30) {
-        closeIntroPage();
-      }
-    });
-
-    function closeIntroPage() {
-      if (introClosed) return;
-
-      introClosed = true;
-      introPage.style.transform = "translateY(-100%)";
-      introPage.style.opacity = "0";
-
-      setTimeout(() => {
-        introPage.style.display = "none";
-        startAutoScroll();
-      }, 1200);
-    }
 
     cover.addEventListener("click", async () => {
 
@@ -756,6 +684,17 @@
 
       setTimeout(() => {
         cover.style.display = "none";
+
+        setTimeout(() => {
+          const introPage = document.getElementById("introPage");
+          introPage.style.transform = "translateY(-100%)";
+          introPage.style.opacity = "0";
+
+          setTimeout(() => {
+            introPage.style.display = "none";
+            startAutoScroll();
+          }, 1200);
+        }, 1200);
       }, 1800);
 
       try {
