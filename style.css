@@ -256,10 +256,14 @@
 .v-col {
   writing-mode: vertical-rl;
   text-orientation: upright;
+
   font-family: "Ma Shan Zheng", cursive;
-  font-size: 28px;
-  line-height: 1.7;
-  letter-spacing: 3px;
+  font-size: 25px;
+  line-height: 1.8;
+  letter-spacing: 4px;
+
+  text-align: center;
+  color: #f7d48f;
 }
 
 .v-col.small {
