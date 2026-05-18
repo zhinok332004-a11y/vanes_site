@@ -1,4 +1,4 @@
-  <style>
+ <style>
     * { box-sizing: border-box; }
 
     body {
@@ -95,7 +95,7 @@
     #introPage {
       position: fixed;
       inset: 0;
-      background: #b91f2d;
+      background: #8f0f1d;
       z-index: 9998;
       display: flex;
       align-items: center;
@@ -103,38 +103,86 @@
       transition: transform 1.2s ease, opacity 1.2s ease;
     }
 
-    .intro-card {
-      width: 82%;
-      max-width: 360px;
-      height: 520px;
-      border: 3px solid #ffd98a;
-      border-radius: 20px;
-      color: #ffd98a;
-      text-align: center;
-      padding: 70px 25px;
-      box-shadow: 0 0 25px rgba(255, 217, 138, 0.35);
-      background: rgba(130, 0, 20, 0.12);
+    .chinese-style {
+      width: 240px;
+      height: 88vh;
+      max-height: 760px;
+      background:
+        radial-gradient(circle at 50% 6%, rgba(255, 220, 150, 0.12), transparent 24%),
+        linear-gradient(180deg, #a60d1f, #7f0716);
+      border: 3px solid #d9b16f;
+      border-radius: 10px;
+      position: relative;
+      box-shadow: 0 0 25px rgba(0,0,0,0.25);
+      color: #f7d48f;
+      overflow: hidden;
     }
 
-    .intro-card h1 {
+    .chinese-style::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(255, 215, 120, 0.15), transparent 18%),
+        radial-gradient(circle at 90% 22%, rgba(255, 215, 120, 0.08), transparent 20%);
+      pointer-events: none;
+    }
+
+    .intro-circle {
+      width: 90px;
+      height: 90px;
+      border: 3px solid #e5c27a;
+      border-radius: 50%;
+      margin: 55px auto 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 52px;
       font-family: "Ma Shan Zheng", cursive;
-      font-size: 90px;
-      margin: 0 0 40px;
+      box-shadow: 0 0 18px rgba(255,215,120,0.3);
+      position: relative;
+      z-index: 1;
+    }
+
+    .vertical-text {
+      margin-top: 55px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      font-size: 56px;
       line-height: 1;
-      text-shadow: 0 0 12px rgba(255, 210, 120, 0.7);
-    }
-
-    .intro-card h2 {
       font-family: "Ma Shan Zheng", cursive;
-      font-size: 34px;
-      margin: 45px 0 25px;
-      line-height: 1.4;
+      position: relative;
+      z-index: 1;
     }
 
-    .intro-card p {
-      font-size: 16px;
-      line-height: 2;
-      margin: 0;
+    .intro-name {
+      margin-top: 38px;
+      text-align: center;
+      font-size: 18px;
+      letter-spacing: 2px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .intro-invite {
+      margin-top: 28px;
+      text-align: center;
+      font-size: 24px;
+      font-family: "Ma Shan Zheng", cursive;
+      position: relative;
+      z-index: 1;
+    }
+
+    .intro-tip {
+      position: absolute;
+      bottom: 26px;
+      width: 100%;
+      text-align: center;
+      font-size: 14px;
+      color: rgba(255,235,200,0.85);
+      z-index: 1;
     }
 
     .sleeve-left {
@@ -444,12 +492,20 @@
       .door-xi { font-size: 60px; }
       .left-xi { right: 6px; }
       .right-xi { left: 6px; }
-      .intro-card {
-        height: 480px;
-        padding: 60px 22px;
+      .chinese-style {
+        width: 220px;
+        height: 86vh;
       }
-      .intro-card h1 {
-        font-size: 78px;
+      .vertical-text {
+        font-size: 50px;
+      }
+      .intro-circle {
+        width: 78px;
+        height: 78px;
+        font-size: 46px;
+      }
+      .intro-name {
+        font-size: 16px;
       }
     }
   </style>
