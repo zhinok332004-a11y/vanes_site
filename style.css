@@ -1,405 +1,220 @@
-<style>
-    * { box-sizing: border-box; }
+  <script>
+    const cover = document.getElementById("cover");
+    const leftDoor = document.getElementById("leftDoor");
+    const rightDoor = document.getElementById("rightDoor");
+    const bgm = document.getElementById("bgm");
+    const musicBtn = document.getElementById("musicBtn");
 
-    body {
-      margin: 0;
-      font-family: "Noto Sans SC", "Microsoft YaHei", sans-serif;
-      background: linear-gradient(180deg, #f7f1f5 0%, #f5eff3 42%, #edf3fa 100%);
-      color: #5f5656;
-      overflow-x: hidden;
+    cover.addEventListener("click", async () => {
+
+      setTimeout(() => {
+        leftDoor.style.transform = "translateX(-100%)";
+        rightDoor.style.transform = "translateX(100%)";
+      }, 250);
+
+      setTimeout(() => {
+        cover.style.transition = "opacity 0.6s ease";
+        cover.style.opacity = "0";
+      }, 1200);
+
+      setTimeout(() => {
+        cover.style.display = "none";
+
+        setTimeout(() => {
+          const introPage = document.getElementById("introPage");
+          introPage.style.transform = "translateY(-100%)";
+          introPage.style.opacity = "0";
+
+          setTimeout(() => {
+            introPage.style.display = "none";
+            startAutoScroll();
+          }, 1200);
+        }, 1200);
+      }, 1800);
+
+      try {
+        await bgm.play();
+        musicBtn.textContent = "❚❚";
+      } catch (e) {}
+    });
+
+    musicBtn.addEventListener("click", async () => {
+      if (bgm.paused) {
+        await bgm.play();
+        musicBtn.textContent = "❚❚";
+      } else {
+        bgm.pause();
+        musicBtn.textContent = "♫";
+      }
+    });
+
+    const weddingDate = new Date("2026-06-21T19:00:00");
+
+    function updateCountdown() {
+      const now = new Date();
+      const diff = weddingDate - now;
+
+      if (diff <= 0) return;
+
+      document.getElementById("days").textContent = Math.floor(diff / (1000 * 60 * 60 * 24));
+      document.getElementById("hours").textContent = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      document.getElementById("minutes").textContent = Math.floor((diff / (1000 * 60)) % 60);
+      document.getElementById("seconds").textContent = Math.floor((diff / 1000) % 60);
     }
 
-    #cover {
-      position: fixed;
-      inset: 0;
-      background: #b91f2d;
-      z-index: 9999;
-      overflow: hidden;
-      cursor: pointer;
-    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
 
-    .door {
-      position: absolute;
-      top: 0;
-      width: 50%;
-      height: 100%;
-      background: linear-gradient(135deg, #b71925, #d13a45);
-      transition: transform 1.3s cubic-bezier(0.77, 0, 0.18, 1);
-      overflow: hidden;
-    }
+   let autoScroll = true;
+const scrollSpeed = 0.20;
 
-    #leftDoor { left: 0; }
-    #rightDoor { right: 0; }
+function startAutoScroll() {
+  autoScroll = true;
 
-    .gold-border {
-      position: absolute;
-      inset: 22px;
-      border: 2px solid rgba(246, 197, 103, 0.75);
-      border-radius: 8px;
-    }
+  function step() {
+    if (!autoScroll) return;
 
-    .door-word {
-      position: absolute;
-      top: 28%;
-      color: #ffd98a;
-      font-family: "Ma Shan Zheng", cursive;
-      font-size: 44px;
+    window.scrollBy(0, scrollSpeed);
+
+    const atBottom =
+      window.innerHeight + window.scrollY >= document.body.scrollHeight - 2;
+
+    if (!atBottom) {
+      requestAnimationFrame(step);
     }
-    .door-xi {
-  position: absolute;
-  top: 50%;
-  color: #ffd98a;
-  font-family: "Ma Shan Zheng", cursive;
-  font-size: 72px;
-  line-height: 1;
-  z-index: 30;
-  text-shadow: 0 0 10px rgba(255, 210, 120, 0.7);
+  }
+
+  requestAnimationFrame(step);
 }
 
-.left-xi {
-  right: 10px;
-  transform: translateY(-50%);
+    window.addEventListener("wheel", () => autoScroll = false);
+    window.addEventListener("touchstart", () => autoScroll = false);
+
+    function openGuestForm() {
+      document.getElementById("guestModal").style.display = "flex";
+    }
+
+    function closeGuestForm() {
+      document.getElementById("guestModal").style.display = "none";
+    }
+    function generatePDF() {
+  const name = document.getElementById("guestName").value.trim();
+  const count = document.getElementById("guestCount").value.trim();
+
+  if (!name || !count) {
+    alert("请填写姓名和人数");
+    return;
+  }
+
+  const pdfWindow = window.open("", "_blank");
+
+  pdfWindow.document.write(`
+    <!DOCTYPE html>
+    <html lang="zh">
+    <head>
+      <meta charset="UTF-8">
+      <title>${name}-婚礼请帖</title>
+      <style>
+        body {
+          margin: 0;
+          background: #fff8f0;
+          font-family: "Microsoft YaHei", "SimSun", sans-serif;
+        }
+
+        .invite {
+          width: 794px;
+          height: 1123px;
+          margin: 0 auto;
+          padding: 80px 60px;
+          border: 18px solid #b03141;
+          color: #5a3b32;
+          text-align: center;
+          box-sizing: border-box;
+        }
+
+        h1 {
+          color: #b03141;
+          font-size: 42px;
+          margin-top: 40px;
+        }
+
+        h2 {
+          font-size: 36px;
+          margin: 40px 0 20px;
+        }
+
+        h3 {
+          color: #b03141;
+          font-size: 30px;
+          margin: 35px 0;
+        }
+
+        p {
+          font-size: 22px;
+          line-height: 2;
+        }
+
+        .divider {
+          width: 140px;
+          height: 3px;
+          background: #b03141;
+          margin: 45px auto;
+        }
+
+        .footer {
+          margin-top: 80px;
+          font-size: 20px;
+        }
+
+        @media print {
+          body {
+            background: white;
+          }
+
+          .invite {
+            margin: 0;
+            width: 100%;
+            height: 100vh;
+          }
+        }
+      </style>
+    </head>
+    <body>
+      <div class="invite">
+        <h1>正式婚礼请帖</h1>
+
+        <p>诚挚邀请</p>
+
+        <h2>${name}</h2>
+
+        <p>携 ${count} 位嘉宾</p>
+
+        <div class="divider"></div>
+
+        <p>参加我们的婚礼典礼</p>
+
+        <h3>新郎名字 & 新娘名字</h3>
+
+        <p>时间：2026年6月21日 19:00</p>
+        <p>地点：请填写酒店名称</p>
+
+        <p class="footer">
+          感谢你的见证与祝福<br>
+          我们在婚礼现场等你
+        </p>
+      </div>
+
+      <script>
+        window.onload = function() {
+          setTimeout(function() {
+            window.print();
+          }, 500);
+        };
+      <\/script>
+    </body>
+    </html>
+  `);
+
+  pdfWindow.document.close();
 }
-
-.right-xi {
-  left: 10px;
-  transform: translateY(-50%);
-}
-
-    .left-word { right: 25%; }
-    .right-word { left: 25%; }
-
-  
-    .center-light {
-      position: absolute;
-      left: 50%;
-      top: 0;
-      width: 42px;
-      height: 100%;
-      transform: translateX(-50%);
-      background: linear-gradient(90deg, transparent, rgba(255,240,245,0.95), transparent);
-      z-index: 2;
-      opacity: 0.9; 
-    }
-    
-    #cover-tip {
-      position: absolute;
-      left: 50%;
-      bottom: 42px;
-      transform: translateX(-50%);
-      color: #ffe6e6;
-      font-size: 14px;
-      z-index: 20;
-      white-space: nowrap;
-    }
-    .sleeve-left {
-      left: 16px;
-      transform: rotate(20deg);
-    }
-
-    .sleeve-right {
-      right: 2px;
-      transform: rotate(-34deg);
-    }
-
-  
-
-    .decor-bg {
-      position: fixed;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      height: 220px;
-      background:
-        radial-gradient(circle at 12% 100%, rgba(188, 213, 242, 0.7) 0, rgba(188, 213, 242, 0.2) 24%, transparent 26%),
-        radial-gradient(circle at 30% 100%, rgba(208, 226, 245, 0.95) 0, rgba(208, 226, 245, 0.2) 27%, transparent 29%);
-      z-index: 0;
-      pointer-events: none;
-    }
-
-    .page-wrap {
-      max-width: 460px;
-      margin: 0 auto;
-      padding: 22px 16px 40px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .frame {
-      background: rgba(255,255,255,0.75);
-      border-radius: 34px;
-      padding: 14px 12px 28px;
-      box-shadow: 0 10px 35px rgba(186, 182, 193, 0.18);
-    }
-
-    .title {
-      text-align: center;
-      font-size: 22px;
-      font-weight: 700;
-      color: #343234;
-      margin: 14px 0 18px;
-    }
-
-    .section {
-      background: rgba(255,255,255,0.8);
-      border: 1px solid #ddd8d8;
-      border-radius: 18px;
-      padding: 20px 16px;
-      margin-bottom: 18px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .music-btn {
-      position: absolute;
-      right: 12px;
-      top: 10px;
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      border: 1px solid #f0d7dc;
-      background: rgba(255, 242, 245, 0.95);
-      color: #c99ca7;
-      cursor: pointer;
-      font-size: 14px;
-    }
-
-    .main-heading {
-      text-align: center;
-      color: #b35d67;
-      font-size: 20px;
-      margin: 6px 0 18px;
-    }
-
-    .invite-text {
-      text-align: center;
-      line-height: 2;
-      font-size: 14px;
-      color: #666;
-      margin: 0;
-    }
-
-    .couple-name {
-      text-align: center;
-      color: #b35d67;
-      font-size: 30px;
-      margin: 24px 0 12px;
-      font-family: "Ma Shan Zheng", cursive;
-    }
-
-    .countdown {
-      display: flex;
-      justify-content: center;
-      gap: 18px;
-      margin: 18px 0 8px;
-      text-align: center;
-      color: #a63c47;
-    }
-
-    .countdown strong {
-      display: block;
-      font-size: 20px;
-    }
-
-    .photo-wide,
-    .photo-small,
-    .photo-large,
-    .map {
-      background: linear-gradient(135deg, #f0e6ea, #fbf9fa);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #bca7ad;
-      overflow: hidden;
-    }
-
-    .photo-wide { height: 180px; margin-top: 18px; }
-    .photo-small { height: 150px; }
-    .photo-large { height: 240px; }
-    .map { height: 180px; border-radius: 12px; }
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .map iframe {
-      width: 100%;
-      height: 100%;
-      border: 0;
-    }
-
-    .story-block {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      align-items: center;
-      margin-top: 18px;
-    }
-
-    .say-title {
-      font-family: "Ma Shan Zheng", cursive;
-      color: #9e5457;
-      font-size: 28px;
-    }
-
-    .say-text {
-      font-size: 14px;
-      line-height: 1.9;
-      color: #666;
-    }
-
-    .calendar-month {
-      text-align: center;
-      color: #b03141;
-      font-size: 54px;
-      margin: 10px 0;
-    }
-
-    .calendar {
-      width: 100%;
-      border-collapse: collapse;
-      text-align: center;
-      color: #b03141;
-    }
-
-    .calendar th,
-    .calendar td {
-      padding: 8px 2px;
-      font-size: 15px;
-    }
-
-    .active {
-      width: 34px;
-      height: 34px;
-      line-height: 34px;
-      margin: 0 auto;
-      border-radius: 50%;
-      background: #c61f3c;
-      color: white;
-    }
-
-    .rsvp-btn {
-      margin-top: 18px;
-      padding: 12px 26px;
-      border: none;
-      border-radius: 999px;
-      background: #b03141;
-      color: white;
-      font-size: 15px;
-      cursor: pointer;
-    }
-
-    #guestModal {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.45);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 9998;
-    }
-
-    .guest-box {
-      width: 85%;
-      max-width: 360px;
-      background: #fffaf5;
-      padding: 24px;
-      border-radius: 18px;
-      text-align: left;
-    }
-
-    .guest-box h2 {
-      text-align: center;
-      color: #b03141;
-    }
-
-    .guest-box label {
-      display: block;
-      margin-top: 12px;
-    }
-
-    .guest-box input {
-      width: 100%;
-      padding: 12px;
-      margin-top: 6px;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-    }
-
-    .guest-box button {
-      width: 100%;
-      margin-top: 16px;
-      padding: 12px;
-      border: none;
-      border-radius: 10px;
-      background: #b03141;
-      color: white;
-      cursor: pointer;
-    }
-
-    .guest-box .close-btn {
-      background: #999;
-    }
-
-    #pdfInvite {
-      position: fixed;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      width: 595px;
-      height: 842px;
-      padding: 60px 48px;
-      background: #fff8f0;
-      color: #5a3b32;
-      text-align: center;
-      font-family: "Noto Sans SC", "Microsoft YaHei", sans-serif;
-      border: 12px solid #b03141;
-      z-index: -1;
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    #pdfInvite h1 {
-      font-size: 38px;
-      color: #b03141;
-      margin-top: 0;
-    }
-
-    #pdfInvite h2 {
-      font-size: 32px;
-      margin: 25px 0;
-    }
-
-    #pdfInvite h3 {
-      font-size: 28px;
-      color: #b03141;
-    }
-
-    .pdf-line {
-      margin-top: 40px;
-      font-size: 20px;
-    }
-
-    .pdf-divider {
-      width: 120px;
-      height: 2px;
-      background: #b03141;
-      margin: 35px auto;
-    }
-
-    .pdf-footer {
-      margin-top: 60px;
-      line-height: 2;
-    }
-
-    @media (max-width: 600px) {
-      .double-xi span {
-  font-size: 64px;
-}
-
-      .door-word { font-size: 36px; }
-      .gold-symbol { font-size: 56px; }
-    }
-  </style>
+  </script>
