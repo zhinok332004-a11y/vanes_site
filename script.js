@@ -1,9 +1,39 @@
-  <script>
+<script>
     const cover = document.getElementById("cover");
     const leftDoor = document.getElementById("leftDoor");
     const rightDoor = document.getElementById("rightDoor");
     const bgm = document.getElementById("bgm");
     const musicBtn = document.getElementById("musicBtn");
+    const introPage = document.getElementById("introPage");
+
+    let introClosed = false;
+    let touchStartY = 0;
+
+    introPage.addEventListener("wheel", closeIntroPage);
+
+    introPage.addEventListener("touchstart", (event) => {
+      touchStartY = event.touches[0].clientY;
+    });
+
+    introPage.addEventListener("touchmove", (event) => {
+      const touchCurrentY = event.touches[0].clientY;
+      if (touchStartY - touchCurrentY > 30) {
+        closeIntroPage();
+      }
+    });
+
+    function closeIntroPage() {
+      if (introClosed) return;
+
+      introClosed = true;
+      introPage.style.transform = "translateY(-100%)";
+      introPage.style.opacity = "0";
+
+      setTimeout(() => {
+        introPage.style.display = "none";
+        startAutoScroll();
+      }, 1200);
+    }
 
     cover.addEventListener("click", async () => {
 
@@ -19,17 +49,6 @@
 
       setTimeout(() => {
         cover.style.display = "none";
-
-        setTimeout(() => {
-          const introPage = document.getElementById("introPage");
-          introPage.style.transform = "translateY(-100%)";
-          introPage.style.opacity = "0";
-
-          setTimeout(() => {
-            introPage.style.display = "none";
-            startAutoScroll();
-          }, 1200);
-        }, 1200);
       }, 1800);
 
       try {
