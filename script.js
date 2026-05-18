@@ -1,4 +1,4 @@
- <script>
+  <script>
     const cover = document.getElementById("cover");
     const leftDoor = document.getElementById("leftDoor");
     const rightDoor = document.getElementById("rightDoor");
