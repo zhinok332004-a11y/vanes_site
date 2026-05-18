@@ -1,4 +1,4 @@
- <script>
+  <script>
     const cover = document.getElementById("cover");
     const leftDoor = document.getElementById("leftDoor");
     const rightDoor = document.getElementById("rightDoor");
@@ -19,7 +19,17 @@
 
       setTimeout(() => {
         cover.style.display = "none";
-        startAutoScroll();
+
+        setTimeout(() => {
+          const introPage = document.getElementById("introPage");
+          introPage.style.transform = "translateY(-100%)";
+          introPage.style.opacity = "0";
+
+          setTimeout(() => {
+            introPage.style.display = "none";
+            startAutoScroll();
+          }, 1200);
+        }, 1200);
       }, 1800);
 
       try {
@@ -77,9 +87,6 @@ function startAutoScroll() {
   requestAnimationFrame(step);
 }
 
-setTimeout(() => {
-  startAutoScroll();
-}, 2500);
     window.addEventListener("wheel", () => autoScroll = false);
     window.addEventListener("touchstart", () => autoScroll = false);
 
