@@ -8,12 +8,14 @@
 
     let introClosed = false;
 
-introPage.addEventListener("click", closeIntroPage);
-
 function closeIntroPage() {
+
   if (introClosed) return;
 
   introClosed = true;
+
+  introPage.style.transition =
+    "transform 1.2s ease, opacity 1.2s ease";
 
   introPage.style.transform = "translateY(-100%)";
   introPage.style.opacity = "0";
@@ -24,6 +26,7 @@ function closeIntroPage() {
   }, 1200);
 }
 
+introPage.addEventListener("click", closeIntroPage);
     function closeIntroPage() {
       if (introClosed) return;
 
