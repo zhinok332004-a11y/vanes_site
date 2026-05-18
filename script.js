@@ -1,9 +1,746 @@
-<script>
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>婚礼请柬</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@300;400;500;700&family=Parisienne&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Noto Sans SC", "Microsoft YaHei", sans-serif;
+      background: linear-gradient(180deg, #f7f1f5 0%, #f5eff3 42%, #edf3fa 100%);
+      color: #5f5656;
+      overflow-x: hidden;
+    }
+
+    #cover {
+      position: fixed;
+      inset: 0;
+      background: #b91f2d;
+      z-index: 9999;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .door {
+      position: absolute;
+      top: 0;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(135deg, #b71925, #d13a45);
+      transition: transform 1.3s cubic-bezier(0.77, 0, 0.18, 1);
+      overflow: hidden;
+    }
+
+    #leftDoor { left: 0; }
+    #rightDoor { right: 0; }
+
+    .gold-border {
+      position: absolute;
+      inset: 22px;
+      border: 2px solid rgba(246, 197, 103, 0.75);
+      border-radius: 8px;
+    }
+
+    .door-word {
+      position: absolute;
+      top: 28%;
+      color: #ffd98a;
+      font-family: "Ma Shan Zheng", cursive;
+      font-size: 44px;
+    }
+    .door-xi {
+  position: absolute;
+  top: 50%;
+  color: #ffd98a;
+  font-family: "Ma Shan Zheng", cursive;
+  font-size: 72px;
+  line-height: 1;
+  z-index: 30;
+  text-shadow: 0 0 10px rgba(255, 210, 120, 0.7);
+}
+
+.left-xi {
+  right: 10px;
+  transform: translateY(-50%);
+}
+
+.right-xi {
+  left: 10px;
+  transform: translateY(-50%);
+}
+
+    .left-word { right: 25%; }
+    .right-word { left: 25%; }
+
+  
+    .center-light {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      width: 42px;
+      height: 100%;
+      transform: translateX(-50%);
+      background: linear-gradient(90deg, transparent, rgba(255,240,245,0.95), transparent);
+      z-index: 2;
+      opacity: 0.9; 
+    }
+    #cover-tip {
+      position: absolute;
+      left: 50%;
+      bottom: 42px;
+      transform: translateX(-50%);
+      color: #ffe6e6;
+      font-size: 14px;
+      z-index: 20;
+      white-space: nowrap;
+    }
+
+    #introPage {
+      position: fixed;
+      inset: 0;
+      background: #8f0f1d;
+      z-index: 9998;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 1.2s ease, opacity 1.2s ease;
+    }
+
+    .chinese-style {
+      width: 240px;
+      height: 88vh;
+      max-height: 760px;
+      background:
+        radial-gradient(circle at 50% 6%, rgba(255, 220, 150, 0.12), transparent 24%),
+        linear-gradient(180deg, #a60d1f, #7f0716);
+      border: 3px solid #d9b16f;
+      border-radius: 10px;
+      position: relative;
+      box-shadow: 0 0 25px rgba(0,0,0,0.25);
+      color: #f7d48f;
+      overflow: hidden;
+    }
+
+    .chinese-style::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(255, 215, 120, 0.15), transparent 18%),
+        radial-gradient(circle at 90% 22%, rgba(255, 215, 120, 0.08), transparent 20%);
+      pointer-events: none;
+    }
+
+    .intro-circle {
+      width: 90px;
+      height: 90px;
+      border: 3px solid #e5c27a;
+      border-radius: 50%;
+      margin: 55px auto 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 52px;
+      font-family: "Ma Shan Zheng", cursive;
+      box-shadow: 0 0 18px rgba(255,215,120,0.3);
+      position: relative;
+      z-index: 1;
+    }
+
+    .vertical-text {
+      margin-top: 55px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      font-size: 56px;
+      line-height: 1;
+      font-family: "Ma Shan Zheng", cursive;
+      position: relative;
+      z-index: 1;
+    }
+
+    .intro-name {
+      margin-top: 38px;
+      text-align: center;
+      font-size: 18px;
+      letter-spacing: 2px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .intro-invite {
+      margin-top: 28px;
+      text-align: center;
+      font-size: 24px;
+      font-family: "Ma Shan Zheng", cursive;
+      position: relative;
+      z-index: 1;
+    }
+
+    .intro-tip {
+      position: absolute;
+      bottom: 26px;
+      width: 100%;
+      text-align: center;
+      font-size: 14px;
+      color: rgba(255,235,200,0.85);
+      z-index: 1;
+    }
+
+    .sleeve-left {
+      left: 16px;
+      transform: rotate(20deg);
+    }
+
+    .sleeve-right {
+      right: 2px;
+      transform: rotate(-34deg);
+    }
+
+  
+
+    .decor-bg {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 220px;
+      background:
+        radial-gradient(circle at 12% 100%, rgba(188, 213, 242, 0.7) 0, rgba(188, 213, 242, 0.2) 24%, transparent 26%),
+        radial-gradient(circle at 30% 100%, rgba(208, 226, 245, 0.95) 0, rgba(208, 226, 245, 0.2) 27%, transparent 29%);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .page-wrap {
+      max-width: 460px;
+      margin: 0 auto;
+      padding: 22px 16px 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .frame {
+      background: rgba(255,255,255,0.75);
+      border-radius: 34px;
+      padding: 14px 12px 28px;
+      box-shadow: 0 10px 35px rgba(186, 182, 193, 0.18);
+    }
+
+    .title {
+      text-align: center;
+      font-size: 22px;
+      font-weight: 700;
+      color: #343234;
+      margin: 14px 0 18px;
+    }
+
+    .section {
+      background: rgba(255,255,255,0.8);
+      border: 1px solid #ddd8d8;
+      border-radius: 18px;
+      padding: 20px 16px;
+      margin-bottom: 18px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .music-btn {
+      position: absolute;
+      right: 12px;
+      top: 10px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid #f0d7dc;
+      background: rgba(255, 242, 245, 0.95);
+      color: #c99ca7;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .main-heading {
+      text-align: center;
+      color: #b35d67;
+      font-size: 20px;
+      margin: 6px 0 18px;
+    }
+
+    .invite-text {
+      text-align: center;
+      line-height: 2;
+      font-size: 14px;
+      color: #666;
+      margin: 0;
+    }
+
+    .couple-name {
+      text-align: center;
+      color: #b35d67;
+      font-size: 30px;
+      margin: 24px 0 12px;
+      font-family: "Ma Shan Zheng", cursive;
+    }
+
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      margin: 18px 0 8px;
+      text-align: center;
+      color: #a63c47;
+    }
+
+    .countdown strong {
+      display: block;
+      font-size: 20px;
+    }
+
+    .photo-wide,
+    .photo-small,
+    .photo-large,
+    .map {
+      background: linear-gradient(135deg, #f0e6ea, #fbf9fa);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #bca7ad;
+      overflow: hidden;
+    }
+
+    .photo-wide { height: 180px; margin-top: 18px; }
+    .photo-small { height: 150px; }
+    .photo-large { height: 240px; }
+    .map { height: 180px; border-radius: 12px; }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .map iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .story-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      align-items: center;
+      margin-top: 18px;
+    }
+
+    .say-title {
+      font-family: "Ma Shan Zheng", cursive;
+      color: #9e5457;
+      font-size: 28px;
+    }
+
+    .say-text {
+      font-size: 14px;
+      line-height: 1.9;
+      color: #666;
+    }
+
+    .calendar-month {
+      text-align: center;
+      color: #b03141;
+      font-size: 54px;
+      margin: 10px 0;
+    }
+
+    .calendar {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: center;
+      color: #b03141;
+    }
+
+    .calendar th,
+    .calendar td {
+      padding: 8px 2px;
+      font-size: 15px;
+    }
+
+    .active {
+      width: 34px;
+      height: 34px;
+      line-height: 34px;
+      margin: 0 auto;
+      border-radius: 50%;
+      background: #c61f3c;
+      color: white;
+    }
+
+    .rsvp-btn {
+      margin-top: 18px;
+      padding: 12px 26px;
+      border: none;
+      border-radius: 999px;
+      background: #b03141;
+      color: white;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    #guestModal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9998;
+    }
+
+    .guest-box {
+      width: 85%;
+      max-width: 360px;
+      background: #fffaf5;
+      padding: 24px;
+      border-radius: 18px;
+      text-align: left;
+    }
+
+    .guest-box h2 {
+      text-align: center;
+      color: #b03141;
+    }
+
+    .guest-box label {
+      display: block;
+      margin-top: 12px;
+    }
+
+    .guest-box input {
+      width: 100%;
+      padding: 12px;
+      margin-top: 6px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+    }
+
+    .guest-box button {
+      width: 100%;
+      margin-top: 16px;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      background: #b03141;
+      color: white;
+      cursor: pointer;
+    }
+
+    .guest-box .close-btn {
+      background: #999;
+    }
+
+    #pdfInvite {
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 595px;
+      height: 842px;
+      padding: 60px 48px;
+      background: #fff8f0;
+      color: #5a3b32;
+      text-align: center;
+      font-family: "Noto Sans SC", "Microsoft YaHei", sans-serif;
+      border: 12px solid #b03141;
+      z-index: -1;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    #pdfInvite h1 {
+      font-size: 38px;
+      color: #b03141;
+      margin-top: 0;
+    }
+
+    #pdfInvite h2 {
+      font-size: 32px;
+      margin: 25px 0;
+    }
+
+    #pdfInvite h3 {
+      font-size: 28px;
+      color: #b03141;
+    }
+
+    .pdf-line {
+      margin-top: 40px;
+      font-size: 20px;
+    }
+
+    .pdf-divider {
+      width: 120px;
+      height: 2px;
+      background: #b03141;
+      margin: 35px auto;
+    }
+
+    .pdf-footer {
+      margin-top: 60px;
+      line-height: 2;
+    }
+
+    @media (max-width: 600px) {
+      .door-word { font-size: 36px; }
+      .door-xi { font-size: 60px; }
+      .left-xi { right: 6px; }
+      .right-xi { left: 6px; }
+      .chinese-style {
+        width: 220px;
+        height: 86vh;
+      }
+      .vertical-text {
+        font-size: 50px;
+      }
+      .intro-circle {
+        width: 78px;
+        height: 78px;
+        font-size: 46px;
+      }
+      .intro-name {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="cover">
+    <div id="leftDoor" class="door">
+      <div class="gold-border"></div>
+      <div class="door-word left-word">请</div>
+      <div class="door-xi left-xi">囍</div>
+    </div>
+
+    <div id="rightDoor" class="door">
+      <div class="gold-border"></div>
+      <div class="door-word right-word">帖</div>
+      <div class="door-xi right-xi">囍</div>
+    </div>
+
+    <div class="center-light"></div>
+    <div id="cover-tip">点击开启我们的故事 ❤</div>
+  </div>
+
+  <div id="introPage">
+    <div class="intro-card chinese-style">
+      <div class="intro-circle">囍</div>
+
+      <div class="vertical-text">
+        <span>光</span>
+        <span>临</span>
+      </div>
+
+      <div class="intro-name">戴秋霞 · 白荣辉</div>
+      <div class="intro-name">钟慧敏 · 许赐权</div>
+
+      <div class="intro-invite">全敬约</div>
+      <div class="intro-tip">向上滑动开启请帖</div>
+    </div>
+  </div>
+
+  <div class="decor-bg"></div>
+
+  <div class="page-wrap">
+    <div class="frame">
+      <div class="title">婚礼请柬</div>
+
+      <section class="section">
+        <button class="music-btn" id="musicBtn">♫</button>
+        <h2 class="main-heading">「婚礼」</h2>
+
+        <p class="invite-text">
+          是人生中一场以爱之名的相聚<br>
+          很开心这一天<br>
+          你为我们而来<br>
+          希望我们有幸<br>
+          邀请收到请柬的每一个你<br>
+          见证我们此生最重要的决定
+        </p>
+
+        <div class="couple-name">白少维 & 许梓柔</div>
+
+        <div class="countdown">
+          <div><strong id="days">00</strong><span>天</span></div>
+          <div><strong id="hours">00</strong><span>时</span></div>
+          <div><strong id="minutes">00</strong><span>分</span></div>
+          <div><strong id="seconds">00</strong><span>秒</span></div>
+        </div>
+
+        <div class="photo-wide">
+          <img src="1.jpeg" alt="照片">
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="story-block">
+          <div>
+            <div class="say-title">她说：</div>
+            <div class="say-text">
+              星河滚烫<br>
+              你是人间理想<br>
+              愿你也温柔如旧
+            </div>
+          </div>
+          <div class="photo-small"><img src="2.jpeg" alt="照片"></div>
+        </div>
+
+        <div class="story-block">
+          <div class="photo-small"><img src="3.jpeg" alt="照片"></div>
+          <div>
+            <div class="say-title">他说：</div>
+            <div class="say-text">
+              在我的这颗小星球里面<br>
+              你就是温柔跟璀璨<br>
+              我也终生不换
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="main-heading">婚礼时间</h2>
+        <p class="invite-text">2026年6月21日 星期日 19:00</p>
+
+        <div class="calendar-month">06 / 21</div>
+
+        <table class="calendar">
+          <thead>
+            <tr>
+              <th>一</th><th>二</th><th>三</th><th>四</th><th>五</th><th>六</th><th>日</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td></td><td></td><td></td><td>1</td><td>2</td><td>3</td><td>4</td></tr>
+            <tr><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td></tr>
+            <tr><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td></tr>
+            <tr><td>19</td><td>20</td><td><div class="active">21</div></td><td>22</td><td>23</td><td>24</td><td>25</td></tr>
+            <tr><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td></td><td></td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="section">
+        <h2 class="main-heading">婚礼地点</h2>
+        <p class="invite-text">新江河鱼酒楼 / 62, Jalan Sultan Azlan Shah, 31400 Ipoh, Perak</p>
+
+        <div class="map">
+  <iframe
+    src="https://www.openstreetmap.org/export/embed.html?bbox=101.081%2C4.595%2C101.091%2C4.605&layer=mapnik&marker=4.600%2C101.086"
+    style="border:0;"
+    allowfullscreen=""
+    loading="lazy">
+  </iframe>
+</div>
+      </section>
+
+      <section class="section">
+        <h2 class="main-heading">领取专属请帖</h2>
+        <p class="invite-text">填写你的资料，生成属于你的正式婚礼请帖</p>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfxXqqXR8BNnTYBHxqe6jqMBs8YVhxo4XelkEKW3o6SLZLiXQ/viewform?usp=header" target="_blank">
+    <button class="rsvp-btn">
+        填写出席资料
+    </button>
+</a>
+      </section>
+    </div>
+  </div>
+
+  <div id="guestModal">
+    <div class="guest-box">
+      <h2>填写出席资料</h2>
+
+      <label>姓名：</label>
+      <input type="text" id="guestName" placeholder="请输入姓名">
+
+      <label>人数：</label>
+      <input type="number" id="guestCount" placeholder="请输入人数" min="1">
+
+      <button onclick="generatePDF()">生成 PDF 请帖</button>
+      <button class="close-btn" onclick="closeGuestForm()">关闭</button>
+    </div>
+  </div>
+
+  <div id="pdfInvite">
+    <h1>正式婚礼请帖</h1>
+    <p class="pdf-line">诚挚邀请</p>
+    <h2 id="pdfGuestName">贵宾姓名</h2>
+    <p>携 <span id="pdfGuestCount">1</span> 位嘉宾</p>
+
+    <div class="pdf-divider"></div>
+
+    <p>参加我们的婚礼典礼</p>
+    <h3>白少维 & 许梓柔</h3>
+
+    <p>时间：2026年6月21日 19:00</p>
+    <p>地点：新江河鱼酒楼</p>
+    <p>62, Jalan Sultan Azlan Shah, 31400 Ipoh, Perak</p>
+    <p>https://www.google.com/maps?sca_esv=313a17643fd6427e&rlz=1C1CHBF_en-GBMY1166MY1166&output=search&q=%E6%96%B0%E6%B1%9F%E6%B2%B3%E9%B1%BC%E9%85%92%E6%A5%BC&source=lnms&fbs=ADc_l-aN0CWEZBOHjofHoaMMDiKpaEWjvZ2Py1XXV8d8KvlI3j2nXl-YQ05KjnWz5SrU93H7yjmEhUi5AUSwdCoCuNwiWkvVZE-999EWKM9rFRM-ZVafo7JOKOcqH_2vLJ3f-GYWxHqvZKJ2h9mU1FDBvr8wAf3SsIHJYLjL55e9gVbD77SML-3Cuch9P_cCYdptFe0hed5Qu9oTUpLbXLFrppB8dzHceQ&entry=mc&ved=1t:200715&ictx=111</p>
+
+    <p class="pdf-footer">
+      感谢你的见证与祝福<br>
+      我们在婚礼现场等你
+    </p>
+  </div>
+
+  <audio id="bgm" loop>
+    <source src="m1.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
     const cover = document.getElementById("cover");
     const leftDoor = document.getElementById("leftDoor");
     const rightDoor = document.getElementById("rightDoor");
     const bgm = document.getElementById("bgm");
     const musicBtn = document.getElementById("musicBtn");
+    const introPage = document.getElementById("introPage");
+
+    let introClosed = false;
+    let touchStartY = 0;
+
+    introPage.addEventListener("wheel", closeIntroPage);
+
+    introPage.addEventListener("touchstart", (event) => {
+      touchStartY = event.touches[0].clientY;
+    });
+
+    introPage.addEventListener("touchmove", (event) => {
+      const touchCurrentY = event.touches[0].clientY;
+      if (touchStartY - touchCurrentY > 30) {
+        closeIntroPage();
+      }
+    });
+
+    function closeIntroPage() {
+      if (introClosed) return;
+
+      introClosed = true;
+      introPage.style.transform = "translateY(-100%)";
+      introPage.style.opacity = "0";
+
+      setTimeout(() => {
+        introPage.style.display = "none";
+        startAutoScroll();
+      }, 1200);
+    }
 
     cover.addEventListener("click", async () => {
 
@@ -19,17 +756,6 @@
 
       setTimeout(() => {
         cover.style.display = "none";
-
-        setTimeout(() => {
-          const introPage = document.getElementById("introPage");
-          introPage.style.transform = "translateY(-100%)";
-          introPage.style.opacity = "0";
-
-          setTimeout(() => {
-            introPage.style.display = "none";
-            startAutoScroll();
-          }, 1200);
-        }, 1200);
       }, 1800);
 
       try {
