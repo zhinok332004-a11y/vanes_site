@@ -243,6 +243,35 @@
       overflow: hidden;
     }
 
+    .vertical-invite {
+  margin-top: 42px;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 16px;
+  color: #f7d48f;
+}
+
+.v-col {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  font-family: "Ma Shan Zheng", cursive;
+  font-size: 28px;
+  line-height: 1.7;
+  letter-spacing: 3px;
+}
+
+.v-col.small {
+  font-size: 23px;
+  margin-top: 0;
+}
+
+.v-col.bottom {
+  font-size: 25px;
+  margin-top: 260px;
+}
+
     .music-btn {
       position: absolute;
       right: 12px;
