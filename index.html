@@ -92,7 +92,6 @@
       z-index: 2;
       opacity: 0.9; 
     }
-    
     #cover-tip {
       position: absolute;
       left: 50%;
@@ -103,6 +102,52 @@
       z-index: 20;
       white-space: nowrap;
     }
+
+    #introPage {
+      position: fixed;
+      inset: 0;
+      background: #b91f2d;
+      z-index: 9998;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 1.2s ease, opacity 1.2s ease;
+    }
+
+    .intro-card {
+      width: 82%;
+      max-width: 360px;
+      height: 520px;
+      border: 3px solid #ffd98a;
+      border-radius: 20px;
+      color: #ffd98a;
+      text-align: center;
+      padding: 70px 25px;
+      box-shadow: 0 0 25px rgba(255, 217, 138, 0.35);
+      background: rgba(130, 0, 20, 0.12);
+    }
+
+    .intro-card h1 {
+      font-family: "Ma Shan Zheng", cursive;
+      font-size: 90px;
+      margin: 0 0 40px;
+      line-height: 1;
+      text-shadow: 0 0 12px rgba(255, 210, 120, 0.7);
+    }
+
+    .intro-card h2 {
+      font-family: "Ma Shan Zheng", cursive;
+      font-size: 34px;
+      margin: 45px 0 25px;
+      line-height: 1.4;
+    }
+
+    .intro-card p {
+      font-size: 16px;
+      line-height: 2;
+      margin: 0;
+    }
+
     .sleeve-left {
       left: 16px;
       transform: rotate(20deg);
@@ -406,34 +451,48 @@
     }
 
     @media (max-width: 600px) {
-      .double-xi span {
-  font-size: 64px;
-}
-
       .door-word { font-size: 36px; }
-      .gold-symbol { font-size: 56px; }
+      .door-xi { font-size: 60px; }
+      .left-xi { right: 6px; }
+      .right-xi { left: 6px; }
+      .intro-card {
+        height: 480px;
+        padding: 60px 22px;
+      }
+      .intro-card h1 {
+        font-size: 78px;
+      }
     }
   </style>
 </head>
 
 <body>
- <div id="cover">
-  <div id="leftDoor" class="door">
-    <div class="gold-border"></div>
-    <div class="door-word left-word">请</div>
-    <div class="door-xi left-xi">囍</div>
+  <div id="cover">
+    <div id="leftDoor" class="door">
+      <div class="gold-border"></div>
+      <div class="door-word left-word">请</div>
+      <div class="door-xi left-xi">囍</div>
+    </div>
+
+    <div id="rightDoor" class="door">
+      <div class="gold-border"></div>
+      <div class="door-word right-word">帖</div>
+      <div class="door-xi right-xi">囍</div>
+    </div>
+
+    <div class="center-light"></div>
+    <div id="cover-tip">点击开启我们的故事 ❤</div>
   </div>
 
-  <div id="rightDoor" class="door">
-    <div class="gold-border"></div>
-    <div class="door-word right-word">帖</div>
-    <div class="door-xi right-xi">囍</div>
+  <div id="introPage">
+    <div class="intro-card">
+      <h1>囍</h1>
+      <p>诚挚邀请您参加我们的婚礼</p>
+      <h2>白少维 & 许梓柔</h2>
+      <p>2026.06.21 · 19:00</p>
+    </div>
   </div>
 
-  <div class="center-light"></div>
-
-  <div id="cover-tip">点击开启我们的故事 ❤</div>
-</div>
   <div class="decor-bg"></div>
 
   <div class="page-wrap">
@@ -494,10 +553,10 @@
       </section>
 
       <section class="section">
-        <h2 class="main-heading">宴客时间</h2>
+        <h2 class="main-heading">婚礼时间</h2>
         <p class="invite-text">2026年6月21日 星期日 19:00</p>
 
-        <div class="calendar-month">21-06-2026</div>
+        <div class="calendar-month">06 / 21</div>
 
         <table class="calendar">
           <thead>
@@ -506,27 +565,17 @@
             </tr>
           </thead>
           <tbody>
-  <tr>
-    <td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td>
-  </tr>
-  <tr>
-    <td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td>
-  </tr>
-  <tr>
-    <td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td><div class="active">21</div></td>
-  </tr>
-  <tr>
-    <td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td>
-  </tr>
-  <tr>
-    <td>29</td><td>30</td><td></td><td></td><td></td><td></td><td></td>
-  </tr>
-</tbody>
+            <tr><td></td><td></td><td></td><td>1</td><td>2</td><td>3</td><td>4</td></tr>
+            <tr><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td></tr>
+            <tr><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td></tr>
+            <tr><td>19</td><td>20</td><td><div class="active">21</div></td><td>22</td><td>23</td><td>24</td><td>25</td></tr>
+            <tr><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td></td><td></td></tr>
+          </tbody>
         </table>
       </section>
 
       <section class="section">
-        <h2 class="main-heading">宴客地点</h2>
+        <h2 class="main-heading">婚礼地点</h2>
         <p class="invite-text">新江河鱼酒楼 / 62, Jalan Sultan Azlan Shah, 31400 Ipoh, Perak</p>
 
         <div class="map">
@@ -613,7 +662,17 @@
 
       setTimeout(() => {
         cover.style.display = "none";
-        startAutoScroll();
+
+        setTimeout(() => {
+          const introPage = document.getElementById("introPage");
+          introPage.style.transform = "translateY(-100%)";
+          introPage.style.opacity = "0";
+
+          setTimeout(() => {
+            introPage.style.display = "none";
+            startAutoScroll();
+          }, 1200);
+        }, 1200);
       }, 1800);
 
       try {
@@ -671,9 +730,6 @@ function startAutoScroll() {
   requestAnimationFrame(step);
 }
 
-setTimeout(() => {
-  startAutoScroll();
-}, 2500);
     window.addEventListener("wheel", () => autoScroll = false);
     window.addEventListener("touchstart", () => autoScroll = false);
 
