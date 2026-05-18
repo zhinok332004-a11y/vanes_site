@@ -7,20 +7,22 @@
     const introPage = document.getElementById("introPage");
 
     let introClosed = false;
-    let touchStartY = 0;
 
-    introPage.addEventListener("wheel", closeIntroPage);
+introPage.addEventListener("click", closeIntroPage);
 
-    introPage.addEventListener("touchstart", (event) => {
-      touchStartY = event.touches[0].clientY;
-    });
+function closeIntroPage() {
+  if (introClosed) return;
 
-    introPage.addEventListener("touchmove", (event) => {
-      const touchCurrentY = event.touches[0].clientY;
-      if (touchStartY - touchCurrentY > 30) {
-        closeIntroPage();
-      }
-    });
+  introClosed = true;
+
+  introPage.style.transform = "translateY(-100%)";
+  introPage.style.opacity = "0";
+
+  setTimeout(() => {
+    introPage.style.display = "none";
+    startAutoScroll();
+  }, 1200);
+}
 
     function closeIntroPage() {
       if (introClosed) return;
